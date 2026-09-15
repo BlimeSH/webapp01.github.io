@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>La Villa Due – Bestensee</title>
+
+    <link rel="stylesheet" href="Style.css">
+</head>
+
+<body>
+
+    <!-- TOP NAVIGATION -->
+    <header class="TopBar">
+
+        <div class="TopBarLogo">
+
+            <img
+                src="Storage/Icons/logo_465x320.png"
+                class="TopLogo"
+                alt="La Villa Due"
+            >
+
+        </div>
+
+
+        <nav class="Navigation">
+
+            <a href="Index.html">
+                Home
+            </a>
+
+            <a href="Speisekarte.html">
+                Speisekarte
+            </a>
+
+            <a href="Contact.html">
+                Kontakt
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- HERO -->
+    <section class="Hero">
+
+        <div
+            id="HeroBackground"
+            class="HeroBackground"
+        ></div>
+
+        <div class="HeroOverlay"></div>
+
+
+        <div class="HeroContent">
+
+            <h1>
+                La Villa Due
+            </h1>
+
+
+            <div class="HeroButtons">
+
+                <a
+                    href="https://www.lieferando.de/speisekarte/la-villa-due"
+                    target="_blank"
+                    class="Button ButtonLieferando"
+                >
+
+                    <img
+                        src="Storage/Icons/Liferando.png"
+                        class="LieferandoLogo"
+                        alt="Lieferando"
+                    >
+
+                    <span>
+                        Bei Lieferando bestellen
+                    </span>
+
+                </a>
+
+
+                <a
+                    href="Contact.html"
+                    class="Button ButtonWhite"
+                >
+                    Kontakt
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- HERO THUMBNAILS -->
+        <div
+            id="HeroThumbnails"
+            class="HeroThumbnails"
+        ></div>
+
+    </section>
+
+
+    <!-- REVIEWS -->
+    <section class="Section ReviewsSection">
+
+        <div class="SectionTitle">
+
+            <span>
+                UNSERE GÄSTE
+            </span>
+
+            <h2>
+                Das sagen unsere Gäste
+            </h2>
+
+        </div>
+
+
+        <div
+            id="Reviews"
+            class="Reviews"
+        ></div>
+
+    </section>
+
+
+    <!-- GOOGLE MAPS -->
+    <section class="GoogleSection">
+
+        <div class="SectionTitle">
+
+            <span>
+                STANDORT
+            </span>
+
+            <h2>
+                Hier finden sie uns!
+            </h2>
+
+        </div>
+
+
+        <div class="GoogleContainer">
+
+            <iframe
+                src="https://www.google.com/maps?q=La%20Villa%20Due%20Bestensee&output=embed"
+                loading="lazy"
+                allowfullscreen>
+            </iframe>
+
+        </div>
+
+    </section>
+
+
+    <!-- RECOMMENDATIONS -->
+    <section class="Section RecommendationsSection">
+
+        <div class="SectionTitle">
+
+            <span>
+                UNSERE AUSWAHL
+            </span>
+
+            <h2>
+                Empfehlungen
+            </h2>
+
+        </div>
+
+
+        <div
+            id="Recommendations"
+            class="Recommendations"
+        ></div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer class="BottomBar">
+
+        <div class="BottomBarLogo">
+
+            <img
+                src="Storage/Icons/logo_465x320.png"
+                class="BottomLogo"
+                alt="La Villa Due"
+            >
+
+        </div>
+
+
+        <div class="BottomBarLinks">
+
+            <a
+                href="https://www.lieferando.de/speisekarte/la-villa-due"
+                target="_blank"
+            >
+                Lieferando
+            </a>
+
+            <a href="Speisekarte.html">
+                Speisekarte
+            </a>
+
+            <a href="Contact.html">
+                Kontakt
+            </a>
+
+        </div>
+
+
+        <div class="Copyright">
+            © 2026 La Villa Due
+        </div>
+
+    </footer>
+
+
+    <!-- DATA -->
+    <script src="Data.js"></script>
+
+
+    <script>
+
+        /* =========================
+           HERO
+        ========================= */
+
+        const heroBackground =
+            document.getElementById("HeroBackground");
+
+        const heroThumbnails =
+            document.getElementById("HeroThumbnails");
+
+        let currentHero = 0;
+
+
+        function createHero() {
+
+            if (
+                typeof HeroImages === "undefined" ||
+                HeroImages.length === 0
+            ) {
+                return;
+            }
+
+
+            heroBackground.style.backgroundImage =
+                `url("${HeroImages[0].image}")`;
+
+
+            HeroImages.forEach(
+                (hero, index) => {
+
+                    const thumbnail =
+                        document.createElement("img");
+
+
+                    thumbnail.src =
+                        hero.image;
+
+
+                    thumbnail.className =
+                        "HeroThumbnail";
+
+
+                    thumbnail.alt =
+                        "La Villa Due";
+
+
+                    if (index === 0) {
+
+                        thumbnail.classList.add(
+                            "Active"
+                        );
+
+                    }
+
+
+                    thumbnail.addEventListener(
+                        "click",
+                        () => {
+
+                            currentHero = index;
+
+                            updateHero();
+
+                        }
+                    );
+
+
+                    heroThumbnails.appendChild(
+                        thumbnail
+                    );
+
+                }
+            );
+
+        }
+
+
+        function updateHero() {
+
+            if (
+                typeof HeroImages === "undefined" ||
+                HeroImages.length === 0
+            ) {
+                return;
+            }
+
+
+            heroBackground.style.backgroundImage =
+                `url("${HeroImages[currentHero].image}")`;
+
+
+            const thumbnails =
+                document.querySelectorAll(
+                    ".HeroThumbnail"
+                );
+
+
+            thumbnails.forEach(
+                (thumbnail, index) => {
+
+                    thumbnail.classList.toggle(
+                        "Active",
+                        index === currentHero
+                    );
+
+                }
+            );
+
+        }
+
+
+        setInterval(
+            () => {
+
+                if (
+                    typeof HeroImages === "undefined" ||
+                    HeroImages.length === 0
+                ) {
+                    return;
+                }
+
+
+                currentHero++;
+
+
+                if (
+                    currentHero >=
+                    HeroImages.length
+                ) {
+
+                    currentHero = 0;
+
+                }
+
+
+                updateHero();
+
+            },
+            5000
+        );
+
+
+        createHero();
+
+
+
+        /* =========================
+           REVIEWS
+        ========================= */
+
+        const reviewsContainer =
+            document.getElementById("Reviews");
+
+
+        if (
+            typeof Reviews !== "undefined"
+        ) {
+
+            Reviews.forEach(
+                review => {
+
+                    const reviewElement =
+                        document.createElement("div");
+
+
+                    reviewElement.className =
+                        "ReviewCard";
+
+
+                    let stars = "";
+
+
+                    for (
+                        let i = 0;
+                        i < 5;
+                        i++
+                    ) {
+
+                        if (
+                            i < review.stars
+                        ) {
+
+                            stars += "★";
+
+                        } else {
+
+                            stars += "☆";
+
+                        }
+
+                    }
+
+
+                    reviewElement.innerHTML = `
+
+                        <img
+                            class="ReviewImage"
+                            src="${review.image}"
+                            alt="${review.name}"
+                        >
+
+                        <div class="ReviewContent">
+
+                            <h3>
+                                ${review.name}
+                            </h3>
+
+                            <div class="ReviewStars">
+                                ${stars}
+                            </div>
+
+                            <p>
+                                ${review.text}
+                            </p>
+
+                        </div>
+
+                    `;
+
+
+                    reviewsContainer.appendChild(
+                        reviewElement
+                    );
+
+                }
+            );
+
+        }
+
+
+
+        /* =========================
+           RECOMMENDATIONS
+        ========================= */
+
+        const recommendationsContainer =
+            document.getElementById(
+                "Recommendations"
+            );
+
+
+        if (
+            typeof Recommendations !== "undefined"
+        ) {
+
+            Recommendations.forEach(
+                item => {
+
+                    const recommendation =
+                        document.createElement("div");
+
+
+                    recommendation.className =
+                        "RecommendationCard";
+
+
+                    recommendation.innerHTML = `
+
+                        <img
+                            src="${item.image}"
+                            alt="${item.name}"
+                        >
+
+                        <div class="RecommendationContent">
+
+                            <h3>
+                                ${item.name}
+                            </h3>
+
+                            <p>
+                                ${item.description}
+                            </p>
+
+                            <strong>
+                                ${item.price}
+                            </strong>
+
+                        </div>
+
+                    `;
+
+
+                    recommendationsContainer.appendChild(
+                        recommendation
+                    );
+
+                }
+            );
+
+        }
+
+    </script>
+
+</body>
+</html>

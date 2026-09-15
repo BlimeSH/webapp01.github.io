@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Speisekarte – La Villa Due
+    </title>
+
+
+    <style>
+
+        /* =========================
+           GLOBAL
+        ========================= */
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+            margin: 0;
+
+            background: #f7f3ed;
+
+            font-family: Verdana, sans-serif;
+
+            color: #222;
+        }
+
+
+        /* =========================
+           TOP BAR
+        ========================= */
+
+        .TopBar {
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+
+            height: 85px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 50px;
+
+            background: white;
+
+            box-shadow:
+                0 2px 12px rgba(0, 0, 0, 0.08);
+        }
+
+
+        .TopBarLogo {
+            display: flex;
+
+            align-items: center;
+
+            height: 100%;
+        }
+
+
+        .TopLogo {
+            display: block;
+
+            width: 145px;
+
+            height: 58px;
+
+            object-fit: contain;
+
+            object-position: left center;
+
+            filter: brightness(0);
+
+            user-select: none;
+
+            transition:
+                transform 0.2s ease,
+                opacity 0.2s ease;
+        }
+
+
+        .TopLogo:hover {
+            transform: scale(1.04);
+
+            opacity: 0.85;
+        }
+
+
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        .Navigation {
+            display: flex;
+
+            align-items: center;
+
+            gap: 35px;
+        }
+
+
+        .Navigation a {
+            color: #222;
+
+            text-decoration: none;
+
+            font-size: 15px;
+
+            transition:
+                color 0.2s ease;
+        }
+
+
+        .Navigation a:hover {
+            color: #8b2d23;
+        }
+
+
+        .Navigation a.Active {
+            color: #8b2d23;
+
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           MENU HERO
+        ========================= */
+
+        .MenuHero {
+            position: relative;
+
+            min-height: 330px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 70px 25px;
+
+            background:
+                linear-gradient(
+                    rgba(33, 28, 25, 0.86),
+                    rgba(33, 28, 25, 0.86)
+                ),
+                url("Storage/Pictures/hero1.png?v=2");
+
+            background-position: center;
+
+            background-size: cover;
+
+            background-repeat: no-repeat;
+
+            text-align: center;
+
+            color: white;
+        }
+
+
+        .MenuHeroContent {
+            position: relative;
+
+            z-index: 2;
+
+            max-width: 800px;
+        }
+
+
+        .MenuHeroContent span {
+            display: block;
+
+            margin-bottom: 12px;
+
+            color: #d59b22;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            letter-spacing: 4px;
+        }
+
+
+        .MenuHeroContent h1 {
+            margin: 0;
+
+            font-family: Georgia, serif;
+
+            font-size: 64px;
+
+            font-weight: normal;
+
+            text-shadow:
+                0 4px 20px rgba(0, 0, 0, 0.35);
+        }
+
+
+        .MenuHeroContent p {
+            margin: 18px 0 0;
+
+            color: #ddd;
+
+            font-size: 15px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           MENU SECTION
+        ========================= */
+
+        .MenuSection {
+            max-width: 1150px;
+
+            margin: auto;
+
+            padding: 80px 25px 100px;
+        }
+
+
+        /* =========================
+           SEARCH
+        ========================= */
+
+        .MenuSearch {
+            max-width: 700px;
+
+            margin: 0 auto 20px;
+        }
+
+
+        .MenuSearch input {
+            width: 100%;
+
+            height: 58px;
+
+            padding: 0 24px;
+
+            border: 1px solid #ddd;
+
+            border-radius: 999px;
+
+            outline: none;
+
+            background: white;
+
+            color: #222;
+
+            font-family: Verdana, sans-serif;
+
+            font-size: 15px;
+
+            box-shadow:
+                0 5px 20px rgba(0, 0, 0, 0.06);
+
+            transition:
+                border 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+
+        .MenuSearch input::placeholder {
+            color: #999;
+        }
+
+
+        .MenuSearch input:focus {
+            border-color: #8b2d23;
+
+            box-shadow:
+                0 5px 25px rgba(139, 45, 35, 0.12);
+        }
+
+
+        .SearchInfo {
+            min-height: 25px;
+
+            margin-bottom: 35px;
+
+            color: #777;
+
+            text-align: center;
+
+            font-size: 13px;
+        }
+
+
+        /* =========================
+           MENU CATEGORIES
+        ========================= */
+
+        .MenuCategory {
+            margin-bottom: 75px;
+        }
+
+
+        .MenuCategory.Hidden {
+            display: none;
+        }
+
+
+        .CategoryHeader {
+            margin-bottom: 30px;
+
+            text-align: center;
+        }
+
+
+        .CategoryHeader span {
+            display: block;
+
+            margin-bottom: 8px;
+
+            color: #8b2d23;
+
+            font-size: 11px;
+
+            font-weight: bold;
+
+            letter-spacing: 3px;
+        }
+
+
+        .CategoryHeader h2 {
+            margin: 0;
+
+            font-family: Georgia, serif;
+
+            font-size: 38px;
+
+            font-weight: normal;
+        }
+
+
+        /* =========================
+           MENU ITEMS
+        ========================= */
+
+        .MenuItems {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 15px;
+        }
+
+
+        .MenuItem {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 30px;
+
+            padding: 25px 30px;
+
+            background: white;
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 5px 20px rgba(0, 0, 0, 0.06);
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+
+        .MenuItem:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 9px 25px rgba(0, 0, 0, 0.09);
+        }
+
+
+        .MenuItem.Hidden {
+            display: none;
+        }
+
+
+        .MenuItemContent {
+            min-width: 0;
+        }
+
+
+        .MenuItem h3 {
+            margin: 0 0 9px;
+
+            color: #222;
+
+            font-family: Georgia, serif;
+
+            font-size: 22px;
+
+            font-weight: normal;
+        }
+
+
+        .MenuItem p {
+            max-width: 850px;
+
+            margin: 0;
+
+            color: #666;
+
+            font-size: 13px;
+
+            line-height: 1.65;
+        }
+
+
+        .MenuItem > strong {
+            flex-shrink: 0;
+
+            color: #8b2d23;
+
+            font-size: 16px;
+
+            white-space: nowrap;
+        }
+
+
+        /* =========================
+           NO RESULTS
+        ========================= */
+
+        .NoResults {
+            display: none;
+
+            padding: 70px 20px;
+
+            text-align: center;
+        }
+
+
+        .NoResults.Visible {
+            display: block;
+        }
+
+
+        .NoResults h2 {
+            margin: 0 0 10px;
+
+            font-family: Georgia, serif;
+
+            font-size: 30px;
+
+            font-weight: normal;
+        }
+
+
+        .NoResults p {
+            margin: 0;
+
+            color: #777;
+
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        .BottomBar {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 30px;
+
+            padding: 35px 50px;
+
+            background: #211c19;
+
+            color: white;
+        }
+
+
+        .BottomBarLogo {
+            display: flex;
+
+            align-items: center;
+        }
+
+
+        .BottomLogo {
+            display: block;
+
+            width: 140px;
+
+            height: auto;
+
+            object-fit: contain;
+
+            filter:
+                brightness(0)
+                invert(1);
+
+            user-select: none;
+        }
+
+
+        .BottomBarLinks {
+            display: flex;
+
+            gap: 25px;
+        }
+
+
+        .BottomBarLinks a {
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 13px;
+        }
+
+
+        .BottomBarLinks a:hover {
+            text-decoration: underline;
+        }
+
+
+        .Copyright {
+            color: #aaa;
+
+            font-size: 12px;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            .TopBar {
+                height: auto;
+
+                padding: 18px 20px;
+
+                flex-direction: column;
+
+                gap: 15px;
+            }
+
+
+            .TopLogo {
+                width: 130px;
+
+                height: 52px;
+            }
+
+
+            .Navigation {
+                gap: 20px;
+            }
+
+
+            .MenuHero {
+                min-height: 280px;
+
+                padding: 60px 20px;
+            }
+
+
+            .MenuHeroContent h1 {
+                font-size: 48px;
+            }
+
+
+            .MenuHeroContent p {
+                font-size: 13px;
+            }
+
+
+            .MenuSection {
+                padding:
+                    60px 15px
+                    80px;
+            }
+
+
+            .MenuSearch input {
+                height: 54px;
+
+                font-size: 14px;
+            }
+
+
+            .CategoryHeader h2 {
+                font-size: 32px;
+            }
+
+
+            .MenuItem {
+                align-items: flex-start;
+
+                padding: 22px;
+
+                gap: 20px;
+            }
+
+
+            .MenuItem h3 {
+                font-size: 20px;
+            }
+
+
+            .MenuItem p {
+                font-size: 12px;
+            }
+
+
+            .MenuItem > strong {
+                font-size: 14px;
+            }
+
+
+            .BottomBar {
+                flex-direction: column;
+
+                text-align: center;
+            }
+
+
+            .BottomLogo {
+                width: 120px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         TOP NAVIGATION
+    ========================== -->
+
+    <header class="TopBar">
+
+        <div class="TopBarLogo">
+
+            <img
+                src="Storage/Icons/logo_465x320.png"
+                class="TopLogo"
+                alt="La Villa Due"
+            >
+
+        </div>
+
+
+        <nav class="Navigation">
+
+            <a href="Index.html">
+                Home
+            </a>
+
+            <a
+                href="Speisekarte.html"
+                class="Active"
+            >
+                Speisekarte
+            </a>
+
+            <a href="Contact.html">
+                Kontakt
+            </a>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- =========================
+         MENU HERO
+    ========================== -->
+
+    <section class="MenuHero">
+
+        <div class="MenuHeroContent">
+
+            <span>
+                LA VILLA DUE
+            </span>
+
+            <h1>
+                Speisekarte
+            </h1>
+
+            <p>
+                Entdecken Sie unsere italienischen Spezialitäten.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         MENU
+    ========================== -->
+
+    <main>
+
+        <section class="MenuSection">
+
+
+            <!-- SEARCH -->
+
+            <div class="MenuSearch">
+
+                <input
+                    type="text"
+                    id="MenuSearchInput"
+                    placeholder="Gericht suchen..."
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+            <div
+                id="SearchInfo"
+                class="SearchInfo"
+            ></div>
+
+
+            <!-- =========================
+                 GENERATED MENU
+            ========================== -->
+
+            <div id="MenuContainer"></div>
+
+
+            <!-- =========================
+                 NO RESULTS
+            ========================== -->
+
+            <div
+                id="NoResults"
+                class="NoResults"
+            >
+
+                <h2>
+                    Keine Gerichte gefunden
+                </h2>
+
+                <p>
+                    Versuchen Sie einen anderen Suchbegriff.
+                </p>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer class="BottomBar">
+
+        <div class="BottomBarLogo">
+
+            <img
+                src="Storage/Icons/logo_465x320.png"
+                class="BottomLogo"
+                alt="La Villa Due"
+            >
+
+        </div>
+
+
+        <div class="BottomBarLinks">
+
+            <a href="Index.html">
+                Home
+            </a>
+
+            <a href="Speisekarte.html">
+                Speisekarte
+            </a>
+
+            <a href="Contact.html">
+                Kontakt
+            </a>
+
+        </div>
+
+
+        <div class="Copyright">
+            © 2026 La Villa Due
+        </div>
+
+    </footer>
+
+
+
+    <!-- =========================
+         GERICHTE
+    ========================== -->
+
+    <script src="Gericht.js"></script>
+
+
+    <!-- =========================
+         MENU SCRIPT
+    ========================== -->
+
+    <script>
+
+        const menuContainer =
+            document.getElementById(
+                "MenuContainer"
+            );
+
+
+        const searchInput =
+            document.getElementById(
+                "MenuSearchInput"
+            );
+
+
+        const searchInfo =
+            document.getElementById(
+                "SearchInfo"
+            );
+
+
+        const noResults =
+            document.getElementById(
+                "NoResults"
+            );
+
+
+        let allMenuItems = [];
+
+
+        /* =========================
+           CREATE MENU
+        ========================= */
+
+        function createMenu() {
+
+            menuContainer.innerHTML = "";
+
+            allMenuItems = [];
+
+
+            if (
+                typeof Gerichte === "undefined" ||
+                !Array.isArray(Gerichte)
+            ) {
+
+                noResults.classList.add(
+                    "Visible"
+                );
+
+                return;
+
+            }
+
+
+            const categories = [];
+
+
+            Gerichte.forEach(
+                gericht => {
+
+                    if (
+                        !categories.includes(
+                            gericht.category
+                        )
+                    ) {
+
+                        categories.push(
+                            gericht.category
+                        );
+
+                    }
+
+                }
+            );
+
+
+            categories.forEach(
+                categoryName => {
+
+                    const categoryItems =
+                        Gerichte.filter(
+                            gericht =>
+                                gericht.category ===
+                                categoryName
+                        );
+
+
+                    const category =
+                        document.createElement(
+                            "section"
+                        );
+
+
+                    category.className =
+                        "MenuCategory";
+
+
+                    category.dataset.category =
+                        categoryName;
+
+
+                    category.innerHTML = `
+
+                        <div class="CategoryHeader">
+
+                            <span>
+                                ${categoryName.toUpperCase()}
+                            </span>
+
+                            <h2>
+                                ${categoryName}
+                            </h2>
+
+                        </div>
+
+                        <div class="MenuItems"></div>
+
+                    `;
+
+
+                    const itemsContainer =
+                        category.querySelector(
+                            ".MenuItems"
+                        );
+
+
+                    categoryItems.forEach(
+                        gericht => {
+
+                            const item =
+                                document.createElement(
+                                    "article"
+                                );
+
+
+                            item.className =
+                                "MenuItem";
+
+
+                            item.dataset.search = (
+                                gericht.name +
+                                " " +
+                                gericht.description +
+                                " " +
+                                gericht.category
+                            ).toLowerCase();
+
+
+                            item.innerHTML = `
+
+                                <div class="MenuItemContent">
+
+                                    <h3>
+                                        ${gericht.name}
+                                    </h3>
+
+                                    ${
+                                        gericht.description
+                                            ? `
+                                                <p>
+                                                    ${gericht.description}
+                                                </p>
+                                            `
+                                            : ""
+                                    }
+
+                                </div>
+
+                                <strong>
+                                    ${gericht.price}
+                                </strong>
+
+                            `;
+
+
+                            itemsContainer.appendChild(
+                                item
+                            );
+
+
+                            allMenuItems.push(
+                                item
+                            );
+
+                        }
+                    );
+
+
+                    menuContainer.appendChild(
+                        category
+                    );
+
+                }
+            );
+
+        }
+
+
+        /* =========================
+           SEARCH
+        ========================== */
+
+        function searchMenu() {
+
+            const search =
+                searchInput.value
+                    .toLowerCase()
+                    .trim();
+
+
+            let visibleItems = 0;
+
+
+            allMenuItems.forEach(
+                item => {
+
+                    const searchText =
+                        item.dataset.search;
+
+
+                    const matches =
+                        searchText.includes(
+                            search
+                        );
+
+
+                    if (matches) {
+
+                        item.classList.remove(
+                            "Hidden"
+                        );
+
+                        visibleItems++;
+
+                    } else {
+
+                        item.classList.add(
+                            "Hidden"
+                        );
+
+                    }
+
+                }
+            );
+
+
+            const categories =
+                document.querySelectorAll(
+                    ".MenuCategory"
+                );
+
+
+            categories.forEach(
+                category => {
+
+                    const visible =
+                        category.querySelectorAll(
+                            ".MenuItem:not(.Hidden)"
+                        ).length;
+
+
+                    if (visible === 0) {
+
+                        category.classList.add(
+                            "Hidden"
+                        );
+
+                    } else {
+
+                        category.classList.remove(
+                            "Hidden"
+                        );
+
+                    }
+
+                }
+            );
+
+
+            if (search !== "") {
+
+                searchInfo.textContent =
+                    visibleItems +
+                    " Gericht" +
+                    (
+                        visibleItems === 1
+                            ? ""
+                            : "e"
+                    ) +
+                    " gefunden";
+
+            } else {
+
+                searchInfo.textContent = "";
+
+            }
+
+
+            if (visibleItems === 0) {
+
+                noResults.classList.add(
+                    "Visible"
+                );
+
+            } else {
+
+                noResults.classList.remove(
+                    "Visible"
+                );
+
+            }
+
+        }
+
+
+        /* =========================
+           START
+        ========================== */
+
+        createMenu();
+
+
+        searchInput.addEventListener(
+            "input",
+            searchMenu
+        );
+
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Kontakt – La Villa Due
+    </title>
+
+
+    <style>
+
+        /* =========================
+           GLOBAL
+        ========================= */
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+            margin: 0;
+
+            background: #f7f3ed;
+
+            font-family: Verdana, sans-serif;
+
+            color: #222;
+        }
+
+
+        /* =========================
+           TOP BAR
+        ========================= */
+
+        .TopBar {
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+
+            height: 85px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 50px;
+
+            background: white;
+
+            box-shadow:
+                0 2px 12px rgba(0, 0, 0, 0.08);
+        }
+
+
+        .TopBarLogo {
+            display: flex;
+
+            align-items: center;
+
+            height: 100%;
+        }
+
+
+        .TopLogo {
+            display: block;
+
+            width: 145px;
+
+            height: 58px;
+
+            object-fit: contain;
+
+            object-position: left center;
+
+            filter: brightness(0);
+
+            user-select: none;
+
+            transition:
+                transform 0.2s ease,
+                opacity 0.2s ease;
+        }
+
+
+        .TopLogo:hover {
+            transform: scale(1.04);
+
+            opacity: 0.85;
+        }
+
+
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        .Navigation {
+            display: flex;
+
+            align-items: center;
+
+            gap: 35px;
+        }
+
+
+        .Navigation a {
+            color: #222;
+
+            text-decoration: none;
+
+            font-size: 15px;
+
+            transition:
+                color 0.2s ease;
+        }
+
+
+        .Navigation a:hover {
+            color: #8b2d23;
+        }
+
+
+        .Navigation a.Active {
+            color: #8b2d23;
+
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           CONTACT HERO
+        ========================= */
+
+        .ContactHero {
+            position: relative;
+
+            min-height: 330px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 70px 25px;
+
+            background:
+                linear-gradient(
+                    rgba(33, 28, 25, 0.86),
+                    rgba(33, 28, 25, 0.86)
+                ),
+                url("Storage/Pictures/hero1.png?v=2");
+
+            background-position: center;
+
+            background-size: cover;
+
+            background-repeat: no-repeat;
+
+            text-align: center;
+
+            color: white;
+        }
+
+
+        .ContactHeroContent {
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        .ContactHeroContent span {
+            display: block;
+
+            margin-bottom: 12px;
+
+            color: #d59b22;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            letter-spacing: 4px;
+        }
+
+
+        .ContactHeroContent h1 {
+            margin: 0;
+
+            font-family: Georgia, serif;
+
+            font-size: 64px;
+
+            font-weight: normal;
+
+            text-shadow:
+                0 4px 20px rgba(0, 0, 0, 0.35);
+        }
+
+
+        /* =========================
+           CONTACT SECTION
+        ========================= */
+
+        .ContactSection {
+            max-width: 900px;
+
+            margin: auto;
+
+            padding: 90px 25px 110px;
+        }
+
+
+        .ContactCard {
+            padding: 45px;
+
+            background: white;
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 5px 20px rgba(0, 0, 0, 0.07);
+        }
+
+
+        .ContactCard h2 {
+            margin: 0 0 30px;
+
+            font-family: Georgia, serif;
+
+            font-size: 32px;
+
+            font-weight: normal;
+
+            color: #222;
+        }
+
+
+        .ContactInfo {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 18px;
+        }
+
+
+        .ContactInfo p {
+            margin: 0;
+
+            color: #555;
+
+            font-size: 14px;
+
+            line-height: 1.7;
+        }
+
+
+        .ContactInfo strong {
+            color: #222;
+        }
+
+
+        .ContactInfo a {
+            color: #8b2d23;
+
+            text-decoration: none;
+
+            font-weight: bold;
+        }
+
+
+        .ContactInfo a:hover {
+            text-decoration: underline;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        .BottomBar {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 30px;
+
+            padding: 35px 50px;
+
+            background: #211c19;
+
+            color: white;
+        }
+
+
+        .BottomBarLogo {
+            display: flex;
+
+            align-items: center;
+        }
+
+
+        .BottomLogo {
+            display: block;
+
+            width: 140px;
+
+            height: auto;
+
+            object-fit: contain;
+
+            filter:
+                brightness(0)
+                invert(1);
+
+            user-select: none;
+        }
+
+
+        .BottomBarLinks {
+            display: flex;
+
+            gap: 25px;
+        }
+
+
+        .BottomBarLinks a {
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 13px;
+        }
+
+
+        .BottomBarLinks a:hover {
+            text-decoration: underline;
+        }
+
+
+        .Copyright {
+            color: #aaa;
+
+            font-size: 12px;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            .TopBar {
+                height: auto;
+
+                padding: 18px 20px;
+
+                flex-direction: column;
+
+                gap: 15px;
+            }
+
+
+            .TopLogo {
+                width: 130px;
+
+                height: 52px;
+            }
+
+
+            .Navigation {
+                gap: 20px;
+            }
+
+
+            .ContactHero {
+                min-height: 280px;
+
+                padding: 60px 20px;
+            }
+
+
+            .ContactHeroContent h1 {
+                font-size: 48px;
+            }
+
+
+            .ContactSection {
+                padding: 60px 15px 80px;
+            }
+
+
+            .ContactCard {
+                padding: 30px 25px;
+            }
+
+
+            .ContactCard h2 {
+                font-size: 28px;
+            }
+
+
+            .BottomBar {
+                flex-direction: column;
+
+                text-align: center;
+            }
+
+
+            .BottomLogo {
+                width: 120px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         TOP NAVIGATION
+    ========================== -->
+
+    <header class="TopBar">
+
+        <div class="TopBarLogo">
+
+            <img
+                src="Storage/Icons/logo_465x320.png"
+                class="TopLogo"
+                alt="La Villa Due"
+            >
+
+        </div>
+
+
+        <nav class="Navigation">
+
+            <a href="Index.html">
+                Home
+            </a>
+
+            <a href="Speisekarte.html">
+                Speisekarte
+            </a>
+
+            <a
+                href="Contact.html"
+                class="Active"
+            >
+                Kontakt
+            </a>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- =========================
+         CONTACT HERO
+    ========================== -->
+
+    <section class="ContactHero">
+
+        <div class="ContactHeroContent">
+
+            <span>
+                LA VILLA DUE
+            </span>
+
+            <h1>
+                Kontakt
+            </h1>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         CONTACT INFORMATION
+    ========================== -->
+
+    <main>
+
+        <section class="ContactSection">
+
+            <div class="ContactCard">
+
+                <h2>
+                    Kontaktinformationen
+                </h2>
+
+
+                <div class="ContactInfo">
+
+                    <p>
+                        <strong>
+                            Hussein Fadel
+                        </strong>
+                        handelt im Namen von La Villa Due.
+                    </p>
+
+
+                    <p>
+                        <strong>
+                            Adresse
+                        </strong><br>
+
+                        Köriser Str. 3<br>
+
+                        15741 Bestensee
+                    </p>
+
+
+                    <p>
+                        <strong>
+                            Telefon
+                        </strong><br>
+
+                        <a href="tel:033763730355">
+                            033763730355
+                        </a>
+                    </p>
+
+
+                    <p>
+                        <strong>
+                            E-Mail
+                        </strong><br>
+
+                        <a href="mailto:info@steakhaus-lavilla.de">
+                            Sende uns eine E-Mail
+                        </a>
+                    </p>
+
+
+                    <p>
+                        <strong>
+                            Fax
+                        </strong><br>
+
+                        0800 202 07 702
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer class="BottomBar">
+
+        <div class="BottomBarLogo">
+
+            <img
+                src="Storage/Icons/logo_465x320.png"
+                class="BottomLogo"
+                alt="La Villa Due"
+            >
+
+        </div>
+
+
+        <div class="BottomBarLinks">
+
+            <a href="Index.html">
+                Home
+            </a>
+
+            <a href="Speisekarte.html">
+                Speisekarte
+            </a>
+
+            <a href="Contact.html">
+                Kontakt
+            </a>
+
+        </div>
+
+
+        <div class="Copyright">
+            © 2026 La Villa Due
+        </div>
+
+    </footer>
+
+
+</body>
+
+</html>
